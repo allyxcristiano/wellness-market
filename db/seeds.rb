@@ -63,8 +63,8 @@ puts 'Products seeded successfully.'
   )
 
   # Assign random categories (1 to 3 categories per patient)
-  categories = Category.order('RANDOM()').limit(rand(1..3))
-  patient.categories << categories
+  products = Product.order('RANDOM()').limit(rand(1..3))
+  patient.products << products
 end
 
-puts 'Patients seeded successfully.'
+puts 'Patients with it\'s products seeded successfully.'

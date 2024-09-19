@@ -18,13 +18,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_19_142216) do
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
-  create_table "categories_patients", id: false, force: :cascade do |t|
-    t.integer "patient_id", null: false
-    t.integer "category_id", null: false
-    t.index ["category_id", "patient_id"], name: "index_categories_patients_on_category_id_and_patient_id"
-    t.index ["patient_id", "category_id"], name: "index_categories_patients_on_patient_id_and_category_id"
-  end
-
   create_table "patients", force: :cascade do |t|
     t.string "full_name", null: false
     t.string "email", null: false
@@ -34,6 +27,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_19_142216) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_patients_on_email", unique: true
     t.index ["state_id"], name: "index_patients_on_state_id"
+  end
+
+  create_table "patients_products", id: false, force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.integer "product_id", null: false
+    t.index ["patient_id", "product_id"], name: "index_patients_products_on_patient_id_and_product_id"
+    t.index ["product_id", "patient_id"], name: "index_patients_products_on_product_id_and_patient_id"
   end
 
   create_table "products", force: :cascade do |t|
