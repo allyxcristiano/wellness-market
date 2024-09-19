@@ -1,0 +1,6 @@
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/**/*.rb'
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'db/migrate/**/*.rb'
