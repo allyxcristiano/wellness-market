@@ -64,6 +64,10 @@ puts 'Products seeded successfully.'
 
   # Assign random categories (1 to 3 categories per patient)
   products = Product.order('RANDOM()').limit(rand(1..3))
+
+  # Allowing products to the state of this patient
+  products.each { ProductAllowedState.create!(state_id: state.id, product_id: _1.id) }
+
   patient.products << products
 end
 

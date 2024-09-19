@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_19_142216) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_19_164004) do
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -34,6 +34,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_19_142216) do
     t.integer "product_id", null: false
     t.index ["patient_id", "product_id"], name: "index_patients_products_on_patient_id_and_product_id"
     t.index ["product_id", "patient_id"], name: "index_patients_products_on_product_id_and_patient_id"
+  end
+
+  create_table "product_allowed_states", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "state_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_allowed_states_on_product_id"
+    t.index ["state_id"], name: "index_product_allowed_states_on_state_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -62,5 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_19_142216) do
   end
 
   add_foreign_key "patients", "states"
+  add_foreign_key "product_allowed_states", "products"
+  add_foreign_key "product_allowed_states", "states"
   add_foreign_key "products", "categories"
 end

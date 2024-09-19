@@ -4,3 +4,7 @@ Style/Documentation:
 Style/FrozenStringLiteralComment:
   Exclude:
     - 'db/migrate/**/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
